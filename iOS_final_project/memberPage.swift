@@ -9,7 +9,32 @@ import SwiftUI
 
 struct memberPage: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        NavigationView{
+            VStack{
+//                Text("成為會員")
+//                    .font(.largeTitle)
+//                    .fontWeight(.bold)
+                
+                NavigationLink{
+                    loginPage()
+                }label: {
+                    Text("會員登入")
+                        .padding()
+                }
+                
+                NavigationLink{
+                    signupPage()
+                }label: {
+                    Text("會員註冊")
+                        .padding()
+                }
+            }
+            
+            .padding()
+            .navigationTitle("會員頁面")
+        }
+        
     }
 }
 
