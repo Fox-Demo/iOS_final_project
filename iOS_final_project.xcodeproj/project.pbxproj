@@ -16,7 +16,7 @@
 		0ABAE00028562E2A000A7A5C /* iOS_final_projectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABADFFF28562E2A000A7A5C /* iOS_final_projectUITests.swift */; };
 		0ABAE00228562E2A000A7A5C /* iOS_final_projectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAE00128562E2A000A7A5C /* iOS_final_projectUITestsLaunchTests.swift */; };
 		0ABAE01328563849000A7A5C /* memberPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAE01228563849000A7A5C /* memberPage.swift */; };
-		0AD3B680285B87910060A154 /* loginPage 下午11.35.30.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3B67F285B87910060A154 /* loginPage 下午11.35.30.swift */; };
+		0AD3B682285B88100060A154 /* loginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3B681285B88100060A154 /* loginPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +49,7 @@
 		0ABADFFF28562E2A000A7A5C /* iOS_final_projectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_final_projectUITests.swift; sourceTree = "<group>"; };
 		0ABAE00128562E2A000A7A5C /* iOS_final_projectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_final_projectUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0ABAE01228563849000A7A5C /* memberPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memberPage.swift; sourceTree = "<group>"; };
-		0AD3B67F285B87910060A154 /* loginPage 下午11.35.30.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "loginPage 下午11.35.30.swift"; sourceTree = "<group>"; };
+		0AD3B681285B88100060A154 /* loginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +103,7 @@
 				0ABADFE428562E29000A7A5C /* iOS_final_projectApp.swift */,
 				0ABADFE628562E29000A7A5C /* ContentView.swift */,
 				0ABAE01228563849000A7A5C /* memberPage.swift */,
-				0AD3B67F285B87910060A154 /* loginPage 下午11.35.30.swift */,
+				0AD3B681285B88100060A154 /* loginPage.swift */,
 				0A55F92728572686005E1DF3 /* signupPage.swift */,
 				0ABADFE828562E29000A7A5C /* Assets.xcassets */,
 				0ABADFEA28562E29000A7A5C /* Preview Content */,
@@ -268,9 +268,9 @@
 			files = (
 				0ABAE01328563849000A7A5C /* memberPage.swift in Sources */,
 				0ABADFE728562E29000A7A5C /* ContentView.swift in Sources */,
+				0AD3B682285B88100060A154 /* loginPage.swift in Sources */,
 				0ABADFE528562E29000A7A5C /* iOS_final_projectApp.swift in Sources */,
 				0A55F92828572686005E1DF3 /* signupPage.swift in Sources */,
-				0AD3B680285B87910060A154 /* loginPage 下午11.35.30.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
