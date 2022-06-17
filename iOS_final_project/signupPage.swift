@@ -6,6 +6,30 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+
+func signup(email: String, password: String){
+    let create = Auth.auth().createUser(withEmail: email, password: password) { result, error in
+        guard let user = result?.user,
+              error == nil else {
+            print(error?.localizedDescription)
+            return
+        }
+        print(user.email, user.uid)
+    }
+}
+
+func setName(name: String){
+    let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+    changeRequest?.displayName = name
+    changeRequest?.commitChanges(completion: { error in
+        guard error == nil else {
+           print(error?.localizedDescription)
+           return
+        }
+        print("Set Success")
+    })
+}
 
 struct signupPage: View {
     @State private var isSuccess = false
@@ -52,6 +76,10 @@ struct signupPage: View {
             
             Button{
                 if (Password == password){
+                    
+                    signup(email: email, password: password)
+                    setName(name: name)
+                    
                     isSuccess = true
                 }else{
                     isFailed = true

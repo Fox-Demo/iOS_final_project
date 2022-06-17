@@ -6,15 +6,34 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct memberPage: View {
+    @State var name: String? = ""
+    @State var isLogin: Bool = false
+    @State var loginState:String = "未登入"
+    
     var body: some View {
         
         NavigationView{
             VStack{
-//                Text("成為會員")
-//                    .font(.largeTitle)
-//                    .fontWeight(.bold)
+                Text(loginState)
+                    .font(.largeTitle)
+                
+                Text("名字：\(name!)")
+                    .onAppear {
+                        if let user = Auth.auth().currentUser {
+                            if let Name = user.displayName{
+                                self.name = Name
+                                loginState = "已登入"
+                            }else{
+                                self.name = ""
+                                loginState = "未登入"
+                            }
+                            //self.email = user.email
+                        }
+                        
+                     }
                 
                 NavigationLink{
                     loginPage()
