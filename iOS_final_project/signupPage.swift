@@ -106,6 +106,7 @@ struct signupPage: View {
                 Button("OK"){
                     isSuccess = false
                     dismiss()
+                    
                 }
 
             })
