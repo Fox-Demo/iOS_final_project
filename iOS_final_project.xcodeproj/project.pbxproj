@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A323DF8285F166F00B729CE /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A323DF7285F166F00B729CE /* WeatherData.swift */; };
 		0A55F92828572686005E1DF3 /* signupPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A55F92728572686005E1DF3 /* signupPage.swift */; };
 		0ABADFE528562E29000A7A5C /* iOS_final_projectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABADFE428562E29000A7A5C /* iOS_final_projectApp.swift */; };
 		0ABADFE728562E29000A7A5C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABADFE628562E29000A7A5C /* ContentView.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A323DF7285F166F00B729CE /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		0A55F92728572686005E1DF3 /* signupPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupPage.swift; sourceTree = "<group>"; };
 		0ABADFE128562E29000A7A5C /* iOS_final_project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_final_project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ABADFE428562E29000A7A5C /* iOS_final_projectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_final_projectApp.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			children = (
 				0ABADFE428562E29000A7A5C /* iOS_final_projectApp.swift */,
 				0ABADFE628562E29000A7A5C /* ContentView.swift */,
+				0A323DF7285F166F00B729CE /* WeatherData.swift */,
 				0ABAE01228563849000A7A5C /* memberPage.swift */,
 				0AD3B681285B88100060A154 /* loginPage.swift */,
 				0A55F92728572686005E1DF3 /* signupPage.swift */,
@@ -288,6 +291,7 @@
 				0ABADFE728562E29000A7A5C /* ContentView.swift in Sources */,
 				0AD3B682285B88100060A154 /* loginPage.swift in Sources */,
 				0ABADFE528562E29000A7A5C /* iOS_final_projectApp.swift in Sources */,
+				0A323DF8285F166F00B729CE /* WeatherData.swift in Sources */,
 				0A55F92828572686005E1DF3 /* signupPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

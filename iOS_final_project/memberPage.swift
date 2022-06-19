@@ -48,6 +48,8 @@ struct memberPage: View {
                     Text("會員註冊")
                         .padding()
                 }
+                
+                
             }
             
             .padding()
