@@ -66,10 +66,7 @@ struct memberPage: View {
                     }
                 }
                 
-                
-                
-                
-                
+
                 
             }
             .padding()

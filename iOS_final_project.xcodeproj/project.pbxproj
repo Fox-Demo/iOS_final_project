@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A323DF8285F166F00B729CE /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A323DF7285F166F00B729CE /* WeatherData.swift */; };
 		0A55F92828572686005E1DF3 /* signupPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A55F92728572686005E1DF3 /* signupPage.swift */; };
 		0ABADFE528562E29000A7A5C /* iOS_final_projectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABADFE428562E29000A7A5C /* iOS_final_projectApp.swift */; };
 		0ABADFE728562E29000A7A5C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABADFE628562E29000A7A5C /* ContentView.swift */; };
@@ -22,6 +23,7 @@
 		A804FD9E285C976A00C1EBAF /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A804FD9D285C976A00C1EBAF /* FirebaseFirestoreSwift */; };
 		A804FDA0285C976A00C1EBAF /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A804FD9F285C976A00C1EBAF /* FirebaseStorage */; };
 		A804FDA2285CA47100C1EBAF /* EditName.swift in Sources */ = {isa = PBXBuildFile; fileRef = A804FDA1285CA47100C1EBAF /* EditName.swift */; };
+		A8BA7F692861A14800EEE786 /* homePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA7F682861A14800EEE786 /* homePage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A323DF7285F166F00B729CE /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		0A55F92728572686005E1DF3 /* signupPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = signupPage.swift; sourceTree = "<group>"; };
 		0ABADFE128562E29000A7A5C /* iOS_final_project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_final_project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ABADFE428562E29000A7A5C /* iOS_final_projectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_final_projectApp.swift; sourceTree = "<group>"; };
@@ -57,6 +60,7 @@
 		0AD3B681285B88100060A154 /* loginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginPage.swift; sourceTree = "<group>"; };
 		0ADF162E285C5C2D004ACE0F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A804FDA1285CA47100C1EBAF /* EditName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditName.swift; sourceTree = "<group>"; };
+		A8BA7F682861A14800EEE786 /* homePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homePage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,8 @@
 			children = (
 				0ABADFE428562E29000A7A5C /* iOS_final_projectApp.swift */,
 				0ABADFE628562E29000A7A5C /* ContentView.swift */,
+				A8BA7F682861A14800EEE786 /* homePage.swift */,
+				0A323DF7285F166F00B729CE /* WeatherData.swift */,
 				0ABAE01228563849000A7A5C /* memberPage.swift */,
 				A804FDA1285CA47100C1EBAF /* EditName.swift */,
 				0AD3B681285B88100060A154 /* loginPage.swift */,
@@ -292,7 +298,9 @@
 				0ABADFE728562E29000A7A5C /* ContentView.swift in Sources */,
 				0AD3B682285B88100060A154 /* loginPage.swift in Sources */,
 				0ABADFE528562E29000A7A5C /* iOS_final_projectApp.swift in Sources */,
+				0A323DF8285F166F00B729CE /* WeatherData.swift in Sources */,
 				0A55F92828572686005E1DF3 /* signupPage.swift in Sources */,
+				A8BA7F692861A14800EEE786 /* homePage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
