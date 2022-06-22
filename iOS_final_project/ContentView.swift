@@ -9,6 +9,7 @@ import SwiftUI
 
 
 struct ContentView: View {
+    @StateObject private var userInfor = UserInfor()
     var body: some View {
         TabView{
             homePage()
@@ -23,7 +24,7 @@ struct ContentView: View {
                 .tabItem{
                     Label("setting", systemImage: "gearshape")
                 }
-        }
+        }.environmentObject(userInfor)
     }
 }
 

@@ -17,13 +17,11 @@ struct homePage: View {
     @State private var busRoute = ""
     
     var body: some View{
-        VStack(spacing:20){
+        VStack(spacing:5){
             TextField("尋找公車路線", text: $busRoute, prompt: Text("尋找公車路線"))
                 .textFieldStyle(.roundedBorder)
             // .leftView(Image(systemName: "magnifyingglass"))
                 .padding(.top,50)
-            
-            
             
             if let weather = weather {
                 let parameterWx = weatherWx!.time[0].parameter
@@ -31,51 +29,48 @@ struct homePage: View {
                 let parameterMinT = weatherMinT!.time[0].parameter
                 //                let parameterCI = weatherCI!.time[0].parameter
                 let parameterMaxT = weatherMaxT!.time[0].parameter
+                let photoWT = String(parameterWx.parameterValue!)
                 HStack{
-                    
                     VStack {
-                        Text("32℃").font(.system(size: 28))
-                        Text("\(parameterMinT.parameterName)℃ - \(parameterMaxT.parameterName)℃")
+                        
+                        Text("32℃").font(.system(size: 30)).bold()
+                        Text("\(parameterMinT.parameterName)℃~\(parameterMaxT.parameterName)℃")                        
                         
                     }
+                    .frame(width: 100, height: 150)
+                    
                     .padding()
-                    Spacer()
-//                    .frame(width: 100, height: 200)
+                    //Spacer()
+//                    .frame(width: 100, height: 200)`
                     //                    .padding(.leading,50)
-                    Divider()
-                    Image(systemName: "sun.max")
+                    Divider().frame(width: 2, height: 100).overlay(.black)
+//                    Image(systemName: "sun.max")
+                    Image(photoWT)
                         .resizable()
-                        .frame(width: 100, height: 100)
+                        .frame(width: 60, height: 60)
                         .padding()
                     
                     VStack{
                         Text(parameterWx.parameterName)
                             .padding()
                             .font(.system(size: 28.0))
-                        
-                        
                         Text("降雨:\(parameterPop.parameterName)%")
                         //                Text(parameterCI.parameterName)
                     }
-//                    .frame(width: 100, height: 200)
+                    .frame(width: 150, height: 150)
                     .padding()
-                    
-                    
                 }
-                
-                
             }else{
                 Text("Loading...")
                     .onAppear(perform: self.loadData)
             }
             
+            Divider()
             Spacer()
 //            站牌API
             Image("附近站牌")
         }
         .frame(width: 400, height: 850)
-        
-        
     }
     
     func loadData(){
@@ -90,7 +85,6 @@ struct homePage: View {
             if let data = data {
                 do {
                     let weatherResponse = try decoder.decode(WeatherData.self, from: data)
-                    
                     DispatchQueue.main.async {
                         self.weather = weatherResponse
                         self.weatherWx = weatherResponse.records.location[0].weatherElement[0]
@@ -99,9 +93,7 @@ struct homePage: View {
                         self.weatherCI = weatherResponse.records.location[0].weatherElement[3]
                         self.weatherMaxT = weatherResponse.records.location[0].weatherElement[4]
                     }
-                    
                     print(weatherResponse.success)
-                    
                 } catch  {
                     print(error)
                 }

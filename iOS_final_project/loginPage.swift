@@ -15,6 +15,7 @@ func login(email: String, password: String) {
             return
         }
         print("Login Success")
+        memberPage()
     }
 }
 
@@ -22,48 +23,89 @@ struct loginPage: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
+    
     var body: some View {
         NavigationView{
-            VStack{
+            VStack(alignment: .center, spacing:15){
                 Text("會員登入")
                     .font(.largeTitle)
+                    .padding(.top, 80)
+                Divider()
+                    .frame(width: 300, height: 2)
+                    .overlay(.black)
+                    .padding(.bottom,30)
                 
-                TextField(
-                    "email",
-                    text: $email
-                )
-                .padding()
-                .textFieldStyle(.roundedBorder)
+                VStack {
+                    Text("Account")
+                        .padding(.trailing, 300)
+                    TextField(
+                        "Enter your email",
+                        text: $email
+                    )
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.bottom, 50)
+                }.frame(width: 370, height: 100)
                 
-                SecureField(
-                    "password",
-                    text: $password
-                )
-                .padding()
-                .textFieldStyle(.roundedBorder)
+                VStack {
+                    Text("Password")
+                        .padding(.trailing, 290)
+                    SecureField(
+                        "Enter your password",
+                        text: $password
+                    )
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.bottom, 50)
+                }.frame(width: 370, height: 80)
+                
                 
                 Button{
                     login(email: email, password: password)
                     
                 }label: {
                     Text("登入")
-                        .font(.largeTitle)
+                        .font(.system(size: 25))
+                        .frame(width: 330, height: 10)
                         .foregroundColor(.blue)
                         .padding()
                         .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.blue, lineWidth: 5)
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color.blue, lineWidth: 3)
                         )
-                }
+                }.padding()
                 
-                NavigationLink{
-                    signupPage()
-                }label: {
-                    Text("是否註冊會員")
-                        .font(.title2)
+                Divider()
+                    .frame(width: 300, height: 2)
+                    .overlay(.black)
+                    .padding()
+                
+                HStack(spacing:-5) {
+                    Text("還沒有帳號？")
+                    NavigationLink{
+                        signupPage()
+                    }label: {
+                        Text("註冊")
+                    }
+                    .navigationBarTitleDisplayMode(.inline)
+                    .edgesIgnoringSafeArea(.all)
                 }
+                .frame(width: 370, height: 50)
+                .padding(.trailing,230)
+                
+                
+                
+                HStack(spacing:-5) {
+                    NavigationLink{
+//                        forgetPage()
+                    }label: {
+                        Text("忘記密碼？")
+                    }
+                }
+                .frame(width: 370, height: 50)
+                .padding(.trailing,280)
+                
+                Spacer()
             }
-            
+            .frame(width: 400, height: 850)
         }
     }
 }

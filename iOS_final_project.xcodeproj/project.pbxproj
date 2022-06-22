@@ -24,6 +24,7 @@
 		A804FDA0285C976A00C1EBAF /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A804FD9F285C976A00C1EBAF /* FirebaseStorage */; };
 		A804FDA2285CA47100C1EBAF /* EditName.swift in Sources */ = {isa = PBXBuildFile; fileRef = A804FDA1285CA47100C1EBAF /* EditName.swift */; };
 		A8BA7F692861A14800EEE786 /* homePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA7F682861A14800EEE786 /* homePage.swift */; };
+		A8C8F139286344E400645CA2 /* UserInfor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8F138286344E400645CA2 /* UserInfor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		0ADF162E285C5C2D004ACE0F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A804FDA1285CA47100C1EBAF /* EditName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditName.swift; sourceTree = "<group>"; };
 		A8BA7F682861A14800EEE786 /* homePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homePage.swift; sourceTree = "<group>"; };
+		A8C8F138286344E400645CA2 /* UserInfor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				0A323DF7285F166F00B729CE /* WeatherData.swift */,
 				0ABAE01228563849000A7A5C /* memberPage.swift */,
 				A804FDA1285CA47100C1EBAF /* EditName.swift */,
+				A8C8F138286344E400645CA2 /* UserInfor.swift */,
 				0AD3B681285B88100060A154 /* loginPage.swift */,
 				0A55F92728572686005E1DF3 /* signupPage.swift */,
 				0ADF162E285C5C2D004ACE0F /* GoogleService-Info.plist */,
@@ -295,6 +298,7 @@
 			files = (
 				A804FDA2285CA47100C1EBAF /* EditName.swift in Sources */,
 				0ABAE01328563849000A7A5C /* memberPage.swift in Sources */,
+				A8C8F139286344E400645CA2 /* UserInfor.swift in Sources */,
 				0ABADFE728562E29000A7A5C /* ContentView.swift in Sources */,
 				0AD3B682285B88100060A154 /* loginPage.swift in Sources */,
 				0ABADFE528562E29000A7A5C /* iOS_final_projectApp.swift in Sources */,
