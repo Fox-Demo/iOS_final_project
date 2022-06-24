@@ -16,7 +16,7 @@ struct ContentView: View {
                 .tabItem{
                     Label("home page", systemImage: "house")
                 }
-            Text("定位")
+            MapPage()
                 .tabItem{
                     Label("google map", systemImage: "map")
                 }
