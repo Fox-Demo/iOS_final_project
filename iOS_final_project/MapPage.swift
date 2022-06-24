@@ -28,24 +28,37 @@ struct MapPage: View {
     ]
     
     var body: some View{
-        Map(coordinateRegion: $viewModel.region,
-            showsUserLocation: true,
-            annotationItems: MapLocations,
-            annotationContent: { location in
-                MapAnnotation(coordinate: location.coordinate){
-                    HStack {
-                        Image(systemName: "mappin")
-                            .foregroundColor(.red)
-                        Text("Hello")
-                            .fixedSize()
-                    }.padding(10)
+        VStack{
+            Text("Map")
+                .font(.system(.title))
+                .padding(.top,50)
+            VStack{
+                Map(coordinateRegion: $viewModel.region,
+                    showsUserLocation: true,
+                    annotationItems: MapLocations,
+                    annotationContent: { location in
+                    MapAnnotation(coordinate: location.coordinate){
+                        HStack {
+                            Image(systemName: "mappin")
+                                .foregroundColor(.red)
+                            Text("Hello")
+                                .fixedSize()
+                        }.padding(10)
+                    }
+                })
+                .frame(width: 330, height: 630)
+                .ignoresSafeArea()
+                .onAppear{
+                    print("ONAPPEAR")
+                    viewModel.checkIfLocationServiceIsEnable()
                 }
-            })
-            .ignoresSafeArea()
-            .onAppear{
-                print("ONAPPEAR")
-                viewModel.checkIfLocationServiceIsEnable()
             }
+            .cornerRadius(50)
+            .padding(.bottom,20)
+        }
+        .frame(width: 350, height: 680)
+        
+        
     }
 }
 

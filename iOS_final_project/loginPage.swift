@@ -15,21 +15,24 @@ func login(email: String, password: String) {
             return
         }
         print("Login Success")
-        memberPage()
     }
 }
 
 struct loginPage: View {
+    
+    @State private var isSuccess = false
+    @State private var isFailed = false
     @State private var email: String = ""
     @State private var password: String = ""
-    
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         NavigationView{
             VStack(alignment: .center, spacing:15){
                 Text("會員登入")
                     .font(.largeTitle)
-                    .padding(.top, 80)
+                    .padding(.top, 40)
+                
                 Divider()
                     .frame(width: 300, height: 2)
                     .overlay(.black)
@@ -37,41 +40,65 @@ struct loginPage: View {
                 
                 VStack {
                     Text("Account")
-                        .padding(.trailing, 300)
+                        .padding(.trailing, 250)
+                        .fixedSize()
                     TextField(
                         "Enter your email",
                         text: $email
                     )
                     .textFieldStyle(.roundedBorder)
-                    .padding(.bottom, 50)
-                }.frame(width: 370, height: 100)
+                    .autocapitalization(.none)
+                }
+                .frame(width: 320, height: 80)
                 
                 VStack {
                     Text("Password")
-                        .padding(.trailing, 290)
+                        .padding(.trailing, 240)
+                        .fixedSize()
                     SecureField(
                         "Enter your password",
                         text: $password
                     )
                     .textFieldStyle(.roundedBorder)
-                    .padding(.bottom, 50)
-                }.frame(width: 370, height: 80)
-                
+                }
+                .frame(width: 320, height: 80)
                 
                 Button{
                     login(email: email, password: password)
-                    
+                    if let user = Auth.auth().currentUser {
+                        print("\(user.uid) login")
+                        isSuccess = true
+                    } else {
+                        print("not login")
+                        isFailed = true
+                    }
                 }label: {
                     Text("登入")
                         .font(.system(size: 25))
-                        .frame(width: 330, height: 10)
+                        .frame(width: 250, height: 10)
                         .foregroundColor(.blue)
                         .padding()
                         .overlay(
                             RoundedRectangle(cornerRadius: 15)
                                 .stroke(Color.blue, lineWidth: 3)
                         )
-                }.padding()
+                }
+                .padding()
+                .alert("帳號或密碼錯誤", isPresented: $isFailed, actions:{
+                    Button("重試"){
+                        isFailed = false
+                    }
+                })
+                
+                .alert("成功", isPresented: $isSuccess, actions:{
+                    
+                    Button("OK"){
+                        isSuccess = false
+                        dismiss()
+                    }
+                })
+            
+
                 
                 Divider()
                     .frame(width: 300, height: 2)
@@ -88,24 +115,21 @@ struct loginPage: View {
                     .navigationBarTitleDisplayMode(.inline)
                     .edgesIgnoringSafeArea(.all)
                 }
-                .frame(width: 370, height: 50)
-                .padding(.trailing,230)
-                
-                
-                
+                .frame(width: 320, height: 30)
+                .padding()
+            
                 HStack(spacing:-5) {
                     NavigationLink{
-//                        forgetPage()
+                        forgetPasswordView()
                     }label: {
                         Text("忘記密碼？")
                     }
                 }
-                .frame(width: 370, height: 50)
-                .padding(.trailing,280)
-                
+                .frame(width: 320, height: 5)
+                .padding()
                 Spacer()
             }
-            .frame(width: 400, height: 850)
+            .frame(width: 350, height: 700)
         }
     }
 }

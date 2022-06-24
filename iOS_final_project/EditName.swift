@@ -8,18 +8,20 @@
 import SwiftUI
 import FirebaseAuth
 struct EditName: View {
-    @Environment(\.dismiss) private var dismiss
     
+    @State var name = ""
+
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var userInfor: UserInfor
 
     let genders = ["Male", "Female"]
     
-    @State var name = ""
     var body: some View {
         VStack{
             Text("編輯使用者資料")
                 .font(.largeTitle)
                 .padding(.top, 80)
+            
             Divider()
                 .frame(width: 300, height: 2)
                 .overlay(.black)
@@ -27,59 +29,54 @@ struct EditName: View {
             
             VStack {
                 Text("User name")
-                    .padding(.trailing, 280)
+                    .padding(.trailing, 240)
+                    .fixedSize()
                 TextField(
                     "Edit your name",
                     text: $name
                 )
+                .autocapitalization(.none)
                 .textFieldStyle(.roundedBorder)
-                .padding(.bottom, 50)
-            }.frame(width: 370, height: 70)
+            }
+            .frame(width: 330, height: 80)
             
             VStack {
                 Text("User address")
-                    .padding(.trailing, 270)
+                    .padding(.trailing, 220)
                     .fixedSize()
                 TextField(
                     "Edit your address",
                     text: $userInfor.address
                 )
+                .autocapitalization(.none)
                 .textFieldStyle(.roundedBorder)
-                .padding(.bottom, 50)
-            }.frame(width: 370, height: 70)
+            }.frame(width: 330, height: 80)
             
             VStack {
-                Text("User birthday")
-                
-                    .padding(.trailing, 265)
-                    .fixedSize()
-                DatePicker("", selection: $userInfor.birthday, displayedComponents: .date)
-                    .padding(.trailing,50)
-                
-            }.frame(width: 370, height: 70)
-            
-            VStack {
-                Text("User gender")
-                    .padding(.trailing, 275)
-                    .fixedSize()
-                //                TextField(
-                //                    "Enter your email",
-                //                    text: $name
-                //                )
-                //                .textFieldStyle(.roundedBorder)
-                //                .padding(.bottom, 50)
-                
-                Picker("", selection: $userInfor.selectedGender) {
-                    
-                    ForEach(0..<genders.count) { index in
-                        Text(self.genders[index]).tag(index).font(.title)
-                    }
+                HStack {
+                    Text("User birthday")
+                        .padding(.leading,5)
+                    DatePicker("", selection: $userInfor.birthday, displayedComponents: .date)
+                        .padding(.leading)
                 }
-                .padding()
-                .pickerStyle(SegmentedPickerStyle())
-                .foregroundColor(Color.blue)
-                
-            }.frame(width: 370, height: 70)
+            }.frame(width: 330, height: 60)
+            
+            VStack {
+                HStack {
+                    Text("User gender")
+                        .padding(.leading,5)
+                    
+                    Picker("", selection: $userInfor.selectedGender) {
+                        ForEach(0..<genders.count) { index in
+                            Text(self.genders[index]).tag(index).font(.title)
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .foregroundColor(Color.blue)
+                    .padding(.leading,100)
+                }
+            }
+            .frame(width: 330, height: 60)
             
             Divider()
                 .frame(width: 300, height: 2)
@@ -108,9 +105,10 @@ struct EditName: View {
                             .stroke(Color.blue, lineWidth: 3)
                     )
             }
-        }.frame(width: 400, height: 200)
+            Spacer()
+        }
+        .frame(width: 350, height: 700)
     }
-    
 }
 
 struct EditName_Previews: PreviewProvider {

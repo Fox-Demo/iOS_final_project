@@ -24,6 +24,10 @@
 		0AD3B682285B88100060A154 /* loginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD3B681285B88100060A154 /* loginPage.swift */; };
 		0ADF162F285C5C2D004ACE0F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0ADF162E285C5C2D004ACE0F /* GoogleService-Info.plist */; };
 		A804FDA2285CA47100C1EBAF /* EditName.swift in Sources */ = {isa = PBXBuildFile; fileRef = A804FDA1285CA47100C1EBAF /* EditName.swift */; };
+		A85B556B2865B99600B521ED /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85B556A2865B99600B521ED /* ImagePicker.swift */; };
+		A85B556D2865B9AE00B521ED /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85B556C2865B9AE00B521ED /* ImageSaver.swift */; };
+		A85B556F2865BBEF00B521ED /* forgetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85B556E2865BBEF00B521ED /* forgetPasswordView.swift */; };
+		A8A583012865E0820000CBD1 /* logoutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A583002865E0820000CBD1 /* logoutPage.swift */; };
 		A8BA7F692861A14800EEE786 /* homePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA7F682861A14800EEE786 /* homePage.swift */; };
 		A8C8F139286344E400645CA2 /* UserInfor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8F138286344E400645CA2 /* UserInfor.swift */; };
 /* End PBXBuildFile section */
@@ -63,6 +67,10 @@
 		0AD3B681285B88100060A154 /* loginPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginPage.swift; sourceTree = "<group>"; };
 		0ADF162E285C5C2D004ACE0F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A804FDA1285CA47100C1EBAF /* EditName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditName.swift; sourceTree = "<group>"; };
+		A85B556A2865B99600B521ED /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImagePicker.swift; path = "../../../Downloads/iOS_final_project 下午5.04.27/iOS_final_project/ImagePicker.swift"; sourceTree = "<group>"; };
+		A85B556C2865B9AE00B521ED /* ImageSaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageSaver.swift; path = "../../../Downloads/iOS_final_project 下午5.04.27/iOS_final_project/ImageSaver.swift"; sourceTree = "<group>"; };
+		A85B556E2865BBEF00B521ED /* forgetPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = forgetPasswordView.swift; path = "../../../Downloads/iOS_final_project 下午5.04.27/iOS_final_project/forgetPasswordView.swift"; sourceTree = "<group>"; };
+		A8A583002865E0820000CBD1 /* logoutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logoutPage.swift; sourceTree = "<group>"; };
 		A8BA7F682861A14800EEE786 /* homePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homePage.swift; sourceTree = "<group>"; };
 		A8C8F138286344E400645CA2 /* UserInfor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,7 +132,11 @@
 				A8BA7F682861A14800EEE786 /* homePage.swift */,
 				0A323DF7285F166F00B729CE /* WeatherData.swift */,
 				0ABAE01228563849000A7A5C /* memberPage.swift */,
+				A8A583002865E0820000CBD1 /* logoutPage.swift */,
+				A85B556C2865B9AE00B521ED /* ImageSaver.swift */,
+				A85B556A2865B99600B521ED /* ImagePicker.swift */,
 				A804FDA1285CA47100C1EBAF /* EditName.swift */,
+				A85B556E2865BBEF00B521ED /* forgetPasswordView.swift */,
 				A8C8F138286344E400645CA2 /* UserInfor.swift */,
 				0AD3B681285B88100060A154 /* loginPage.swift */,
 				0A55F92728572686005E1DF3 /* signupPage.swift */,
@@ -314,8 +326,12 @@
 				0ABADFE728562E29000A7A5C /* ContentView.swift in Sources */,
 				0AD3B682285B88100060A154 /* loginPage.swift in Sources */,
 				0ABADFE528562E29000A7A5C /* iOS_final_projectApp.swift in Sources */,
+				A85B556F2865BBEF00B521ED /* forgetPasswordView.swift in Sources */,
+				A85B556D2865B9AE00B521ED /* ImageSaver.swift in Sources */,
+				A85B556B2865B99600B521ED /* ImagePicker.swift in Sources */,
 				0A323DF8285F166F00B729CE /* WeatherData.swift in Sources */,
 				0A55F92828572686005E1DF3 /* signupPage.swift in Sources */,
+				A8A583012865E0820000CBD1 /* logoutPage.swift in Sources */,
 				A8BA7F692861A14800EEE786 /* homePage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,7 +491,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS_final_project/Preview Content\"";
-				DEVELOPMENT_TEAM = WNPQVXF7H9;
+				DEVELOPMENT_TEAM = RA3U2S364M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app need your location";
@@ -505,7 +521,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS_final_project/Preview Content\"";
-				DEVELOPMENT_TEAM = WNPQVXF7H9;
+				DEVELOPMENT_TEAM = RA3U2S364M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app need your location";

@@ -19,17 +19,6 @@ func signup(email: String, password: String){
     }
 }
 
-func setName(name: String){
-    let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-    changeRequest?.displayName = name
-    changeRequest?.commitChanges(completion: { error in
-        guard error == nil else {
-           print(error?.localizedDescription)
-           return
-        }
-        print("Set Success")
-    })
-}
 
 struct signupPage: View {
     @State private var isSuccess = false
@@ -52,45 +41,47 @@ struct signupPage: View {
                 
                 VStack {
                     Text("Account")
-                        .padding(.trailing, 300)
+                        .padding(.trailing, 250)
+                        .fixedSize()
                     TextField(
                         "Enter your email",
                         text: $email
                     )
                     .textFieldStyle(.roundedBorder)
                     .padding(.bottom, 50)
-                }.frame(width: 370, height: 70)
+                }.frame(width: 320, height: 70)
             
                 VStack {
                     Text("Password")
-                        .padding(.trailing, 290)
+                        .padding(.trailing, 240)
+                        .fixedSize()
                     SecureField(
                         "Enter your password",
                         text: $password
                     )
                     .textFieldStyle(.roundedBorder)
-                    //.padding(.bottom, 50)
                     Text("*Must be at least 6 words")
+                        .fixedSize()
                         .font(.system(size:13))
                         .foregroundColor(.red)
-                        .padding(EdgeInsets(top:0, leading: 0, bottom: 50, trailing: 200))
-                }.frame(width: 370, height: 100)
+                        .padding(EdgeInsets(top:0, leading: 0, bottom: 50, trailing: 150))
+                }.frame(width: 320, height: 100)
                 
                 VStack {
                     Text("Confirm Password")
-                        .padding(.trailing, 225)
+                        .padding(.trailing, 175)
+                        .fixedSize()
                     SecureField(
                         "Confirm your password",
                         text: $Password
                     )
                     .textFieldStyle(.roundedBorder)
                     .padding(.bottom, 50)
-                }.frame(width: 370, height: 70)
+                }.frame(width: 320, height: 70)
                 
                 Button{
                     if (Password == password){
                         signup(email: email, password: password)
-                        setName(name: name)
                         isSuccess = true
                     }else{
                         isFailed = true
@@ -98,7 +89,7 @@ struct signupPage: View {
                 }label: {
                     Text("註冊")
                         .font(.system(size: 25))
-                        .frame(width: 330, height: 10)
+                        .frame(width: 250, height: 10)
                         .foregroundColor(.blue)
                         .padding()
                         .overlay(
@@ -121,8 +112,8 @@ struct signupPage: View {
                     .navigationBarTitleDisplayMode(.inline)
                     .edgesIgnoringSafeArea(.all)
                 }
-                .frame(width: 370, height: 50)
-                .padding(.trailing,210)
+                .frame(width: 320, height: 50)
+                .padding()
                         
                 .alert("成功註冊", isPresented: $isSuccess, actions:{
                     Button("OK"){
@@ -137,7 +128,7 @@ struct signupPage: View {
                     }
                 })
                 Spacer()
-            }
+            }.frame(width: 350, height: 700)
         }
     }
 }

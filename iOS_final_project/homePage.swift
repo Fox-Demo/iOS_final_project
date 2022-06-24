@@ -6,6 +6,72 @@
 //
 
 import SwiftUI
+import Combine
+
+final class KeyboardGuardian: ObservableObject {
+
+    let objectWillChange = PassthroughSubject<Void, Never>()
+
+    public var rects: Array<CGRect>
+    public var keyboardRect: CGRect = CGRect()
+
+    // keyboardWillShow notification may be posted repeatedly,
+    // this flag makes sure we only act once per keyboard appearance
+    public var keyboardIsHidden = true
+
+    public var slide: CGFloat = 0 {
+        didSet {
+            objectWillChange.send()
+        }
+    }
+
+    public var showField: Int = 0 {
+        didSet {
+            updateSlide()
+        }
+    }
+
+    init(textFieldCount: Int) {
+        self.rects = Array<CGRect>(repeating: CGRect(), count: textFieldCount)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidHide(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    @objc func keyBoardWillShow(notification: Notification) {
+        if keyboardIsHidden {
+            keyboardIsHidden = false
+            if let rect = notification.userInfo?["UIKeyboardFrameEndUserInfoKey"] as? CGRect {
+                keyboardRect = rect
+                updateSlide()
+            }
+        }
+    }
+
+    @objc func keyBoardDidHide(notification: Notification) {
+        keyboardIsHidden = true
+        updateSlide()
+    }
+
+    func updateSlide() {
+        if keyboardIsHidden {
+            slide = 0
+        } else {
+            let tfRect = self.rects[self.showField]
+            let diff = keyboardRect.minY - tfRect.maxY
+            print("tfRect", tfRect, "\nself.showField", self.showField)
+            if diff > 0 {
+                slide += diff
+            } else {
+                slide += min(diff, 0)
+            }
+        }
+    }
+}
 
 struct homePage: View {
     @State var weather: WeatherData?
@@ -15,62 +81,58 @@ struct homePage: View {
     @State var weatherCI: WeatherElement?
     @State var weatherMaxT: WeatherElement?
     @State private var busRoute = ""
+    @ObservedObject private var kGuardian = KeyboardGuardian(textFieldCount: 1)
     
     var body: some View{
-        VStack(spacing:5){
+        VStack(){
             TextField("尋找公車路線", text: $busRoute, prompt: Text("尋找公車路線"))
                 .textFieldStyle(.roundedBorder)
-            // .leftView(Image(systemName: "magnifyingglass"))
                 .padding(.top,50)
+                
             
             if let weather = weather {
                 let parameterWx = weatherWx!.time[0].parameter
                 let parameterPop = weatherPop!.time[0].parameter
                 let parameterMinT = weatherMinT!.time[0].parameter
-                //                let parameterCI = weatherCI!.time[0].parameter
                 let parameterMaxT = weatherMaxT!.time[0].parameter
                 let photoWT = String(parameterWx.parameterValue!)
                 HStack{
                     VStack {
-                        
                         Text("32℃").font(.system(size: 30)).bold()
-                        Text("\(parameterMinT.parameterName)℃~\(parameterMaxT.parameterName)℃")                        
-                        
+                        Text("\(parameterMinT.parameterName)℃~\(parameterMaxT.parameterName)℃")
+                            .fixedSize()
                     }
-                    .frame(width: 100, height: 150)
-                    
+                    .frame(width: 100, height: 140)
                     .padding()
-                    //Spacer()
-//                    .frame(width: 100, height: 200)`
-                    //                    .padding(.leading,50)
-                    Divider().frame(width: 2, height: 100).overlay(.black)
-//                    Image(systemName: "sun.max")
+                    
+                    Divider().frame(width: 2, height: 100).overlay(.gray)
+                    
                     Image(photoWT)
                         .resizable()
-                        .frame(width: 60, height: 60)
-                        .padding()
+                        .frame(width: 70, height: 70)
+                        .padding(.leading,20)
                     
                     VStack{
                         Text(parameterWx.parameterName)
-                            .padding()
-                            .font(.system(size: 28.0))
-                        Text("降雨:\(parameterPop.parameterName)%")
-                        //                Text(parameterCI.parameterName)
+                            .font(.system(size: 25))
+                        Text("降雨率:\(parameterPop.parameterName)%")
                     }
-                    .frame(width: 150, height: 150)
-                    .padding()
+                    .frame(width: 140, height: 140)
+                    .padding(.trailing,10)
                 }
+                .frame(width: 350, height: 140)
+                
             }else{
                 Text("Loading...")
                     .onAppear(perform: self.loadData)
             }
-            
             Divider()
             Spacer()
-//            站牌API
-            Image("附近站牌")
+            //            站牌API
+
         }
-        .frame(width: 400, height: 850)
+        .frame(width: 360, height: 750)
+        .offset(y: kGuardian.slide).animation(.easeInOut(duration: 1.0))
     }
     
     func loadData(){
