@@ -9,7 +9,7 @@ import SwiftUI
 
 struct functionIntroduceView: View {
     @State private var functions = [
-       "Login","Sing up"
+       "Login","Sing up",
         
         
     ]

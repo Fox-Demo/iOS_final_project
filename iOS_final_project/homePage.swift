@@ -105,7 +105,7 @@ struct homePage: View {
                 let parameterMinT = weatherMinT!.time[0].parameter
                 let parameterMaxT = weatherMaxT!.time[0].parameter
                 let photoWT = String(parameterWx.parameterValue!)
-//                Text(photoWT)
+                Text(photoWT)
                 HStack{
                     VStack {
                         Text("32℃").font(.system(size: 30)).bold()

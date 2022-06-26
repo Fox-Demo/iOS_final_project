@@ -68,7 +68,6 @@ struct SearchBusView: View {
             List{
                 ForEach (busStops) { stop in
                     SearchResultRow(stop: stop)
-
                 }
             }
             .listStyle(.plain)
