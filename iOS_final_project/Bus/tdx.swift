@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import MapKit
+import SwiftUI
 
 extension Data {
     func prettyPrintedJSONString() {
@@ -162,10 +164,36 @@ struct BusEstimatedTimeOfArrivalByRoute: Codable {
     }
 }
 
+struct BusStopNearBy: Codable, Identifiable{
+    let id: String?
+    let stopName: Name?
+    let stopPosition: Position?
+    var coordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: stopPosition?.PositionLat ?? 0, longitude: stopPosition?.PositionLon ?? 0)
+    }
+    
+    struct Name: Codable{
+        let Zh_tw: String?
+        let En: String?
+    }
+    
+    struct Position: Codable{
+        let PositionLon: Double?
+        let PositionLat: Double?
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "StopUID"
+        case stopName = "StopName"
+        case stopPosition = "StopPosition"
+    }
+}
+
 class tdxAPI{
     private let clientId = "t108590008-139f0ce0-30bf-4e4f"
     private let clientSecret = "c939b2e7-ce16-40ef-a9a9-75d50c071c17"
     private let prefix = "https://tdx.transportdata.tw/api/basic"
+    private let prefixAdvanced = "https://tdx.transportdata.tw/api/advanced"
     var accessToken:String? = ""
     
     private func generateAccessToken(){
@@ -199,6 +227,7 @@ class tdxAPI{
         sem.wait()
         
     }
+    
     func getBusEstimatedTimeOfArrival (city: String, top: Int, completion: @escaping ([BusEstimatedTimeOfArrival])->Void){
         var urlComponent = URLComponents(string: "\(self.prefix)/v2/Bus/EstimatedTimeOfArrival/City/\(city)")!
         urlComponent.queryItems = [
@@ -234,6 +263,23 @@ class tdxAPI{
         
         return json
     }
+    
+    func getBusStopNearBy(latitude: Binding<Double>, longitude: Binding<Double>, top: Int, completion: @escaping ([BusStopNearBy])->Void){
+        var urlComponent = URLComponents(string: "\(self.prefixAdvanced)/v2/Bus/Stop/NearBy")!
+        let Lat = latitude.wrappedValue
+        let Lon = longitude.wrappedValue
+        print(Lat, Lon)
+        urlComponent.queryItems = [
+            URLQueryItem(name: "$top", value: String(top)),
+            URLQueryItem(name: "$spatialFilter", value: "nearby(\(String(Lat)), \(String(Lon)), 1000)"),
+            URLQueryItem(name: "$format", value: "JSON")
+        ]
+        
+        let request = basicRequest(url: urlComponent.url!)
+        let json:[BusStopNearBy] = parseJson(request: request)
+        completion(json)
+    }
+    
     
     private func basicRequest(url: URL) -> URLRequest{
         var request = URLRequest(url: url)

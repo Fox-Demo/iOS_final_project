@@ -567,7 +567,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS_final_project/Preview Content\"";
-				DEVELOPMENT_TEAM = RA3U2S364M;
+				DEVELOPMENT_TEAM = WNPQVXF7H9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app need your location";
