@@ -13,6 +13,7 @@ import MapKit
 struct MapPage: View {
     @StateObject private var viewModel = ContentViewModel()
     @State var MapLocations: [BusStopNearBy] = []
+    @State var nearStops: [nearStop] = []
     
     var body: some View{
         VStack{
@@ -37,6 +38,7 @@ struct MapPage: View {
                     .onAppear{
                         viewModel.checkIfLocationServiceIsEnable()
                         self.makeAnnotation()
+                        self.calculateDistance()
                     }
             }
             .cornerRadius(50)
@@ -49,6 +51,19 @@ struct MapPage: View {
         let tdxApi = tdxAPI()
         tdxApi.getBusStopNearBy(latitude: self.$viewModel.latitude, longitude: self.$viewModel.longitude, top: 30){ data in
             self.MapLocations = data
+        }
+    }
+    func calculateDistance(){
+        let Lat = self.$viewModel.latitude.wrappedValue
+        let Lon = self.$viewModel.longitude.wrappedValue
+        let userCurrenLocation = CLLocation(latitude: Lat, longitude: Lon)
+        for place in self.MapLocations{
+            let distanceInMeters = userCurrenLocation.distance(from: place.distance)
+            let Row = nearStop(busId: place.id ?? "0", name: place.stopName?.Zh_tw ?? "Stop" , distance: distanceInMeters)
+            nearStops.append(Row)
+        }
+        nearStops.sort {
+            $0.distance < $1.distance
         }
     }
 }

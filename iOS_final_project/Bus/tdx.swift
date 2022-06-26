@@ -171,6 +171,9 @@ struct BusStopNearBy: Codable, Identifiable{
     var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: stopPosition?.PositionLat ?? 0, longitude: stopPosition?.PositionLon ?? 0)
     }
+    var distance: CLLocation{
+        CLLocation(latitude: stopPosition?.PositionLat ?? 0, longitude: stopPosition?.PositionLon ?? 0)
+    }
     
     struct Name: Codable{
         let Zh_tw: String?

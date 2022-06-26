@@ -11,10 +11,10 @@ struct nearStop:Identifiable {
     var id:String{busId}
     var busId:String
     var name :String
-    var distance :String
+    var distance :Double
 }
 extension nearStop{
-    static let demo = nearStop(busId: "307", name: "板橋車站", distance: "200 m")
+    static let demo = nearStop(busId: "307", name: "板橋車站", distance: 200)
 }
 
 struct nearStopRow: View {
@@ -27,9 +27,8 @@ struct nearStopRow: View {
             }
             Spacer()
             VStack(spacing:10){
-                
-                
-                Text(stop.distance)
+        
+                Text("\(String(format: "%.2f", stop.distance)) m")
                     .padding()
                     .overlay(Capsule(style: .continuous)
                              //.stroke(Color.blue,style: StrokeStyle(lineWidth:4,dash: [10]))
