@@ -267,14 +267,11 @@ class tdxAPI{
         return json
     }
     
-    func getBusStopNearBy(latitude: Binding<Double>, longitude: Binding<Double>, top: Int, completion: @escaping ([BusStopNearBy])->Void){
+    func getBusStopNearBy(latitude: Double, longitude: Double, top: Int, completion: @escaping ([BusStopNearBy])->Void){
         var urlComponent = URLComponents(string: "\(self.prefixAdvanced)/v2/Bus/Stop/NearBy")!
-        let Lat = latitude.wrappedValue
-        let Lon = longitude.wrappedValue
-        print(Lat, Lon)
         urlComponent.queryItems = [
             URLQueryItem(name: "$top", value: String(top)),
-            URLQueryItem(name: "$spatialFilter", value: "nearby(\(String(Lat)), \(String(Lon)), 1000)"),
+            URLQueryItem(name: "$spatialFilter", value: "nearby(\(String(latitude)), \(String(longitude)), 1000)"),
             URLQueryItem(name: "$format", value: "JSON")
         ]
         

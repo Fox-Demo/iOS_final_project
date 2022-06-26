@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Combine
-
+import MapKit
 
 struct homePage: View {
     @State var weather: WeatherData?
@@ -18,8 +18,9 @@ struct homePage: View {
     @State var weatherMaxT: WeatherElement?
     @State private var busRoute = ""
     @State var searchbus = false
-    let nearStops = [nearStop.demo,nearStop.demo]
+    //@State var nearStops: [nearStop] = []
     
+    @EnvironmentObject var viewModel: ContentViewModel
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View{
@@ -69,13 +70,16 @@ struct homePage: View {
                 .frame(width: 350, height: 140)
              
                 List{
-                    ForEach (nearStops) { stop in
+                    ForEach (viewModel.nearStops) { stop in
                         nearStopRow(stop: stop)
                     }
                 }
             }else{
                 Text("Loading...")
-                    .onAppear(perform: self.loadData)
+                    .onAppear{
+                        self.loadData()
+                        viewModel.checkIfLocationServiceIsEnable()
+                    }
             }
             Divider()
             Spacer()
