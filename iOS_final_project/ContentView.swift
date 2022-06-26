@@ -22,6 +22,11 @@ struct ContentView: View {
                 }
             memberPage()
                 .tabItem{
+                    Label("profile", systemImage: "person")
+                }
+//            memberPage()
+            AboutView()
+                .tabItem{
                     Label("setting", systemImage: "gearshape")
                 }
         }.environmentObject(userInfor)

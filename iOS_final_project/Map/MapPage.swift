@@ -18,7 +18,6 @@ struct MapLocation: Identifiable{
     }
 }
 
-
 struct MapPage: View {
     @StateObject private var viewModel = ContentViewModel()
     
@@ -57,8 +56,6 @@ struct MapPage: View {
             .padding(.bottom,20)
         }
         .frame(width: 350, height: 680)
-        
-        
     }
 }
 

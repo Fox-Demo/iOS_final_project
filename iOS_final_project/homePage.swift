@@ -81,21 +81,31 @@ struct homePage: View {
     @State var weatherCI: WeatherElement?
     @State var weatherMaxT: WeatherElement?
     @State private var busRoute = ""
+    @State var searchbus = false
+    
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject private var kGuardian = KeyboardGuardian(textFieldCount: 1)
     
     var body: some View{
         VStack(){
-            TextField("尋找公車路線", text: $busRoute, prompt: Text("尋找公車路線"))
-                .textFieldStyle(.roundedBorder)
-                .padding(.top,50)
-                
-            
+            Text("公車")
+            Button("尋找公車路線"){
+                searchbus = true
+                self.presentationMode.wrappedValue.dismiss()
+            }
+            .padding(10)
+            .sheet(isPresented: $searchbus) {
+                SearchBusView()
+            }
+            .padding(.top,50)
+
             if let weather = weather {
                 let parameterWx = weatherWx!.time[0].parameter
                 let parameterPop = weatherPop!.time[0].parameter
                 let parameterMinT = weatherMinT!.time[0].parameter
                 let parameterMaxT = weatherMaxT!.time[0].parameter
                 let photoWT = String(parameterWx.parameterValue!)
+//                Text(photoWT)
                 HStack{
                     VStack {
                         Text("32℃").font(.system(size: 30)).bold()
