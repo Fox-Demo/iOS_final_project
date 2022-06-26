@@ -38,6 +38,7 @@
 		A8A583012865E0820000CBD1 /* logoutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A583002865E0820000CBD1 /* logoutPage.swift */; };
 		A8A58303286604270000CBD1 /* SearchResultRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A58302286604270000CBD1 /* SearchResultRow.swift */; };
 		A8BA7F692861A14800EEE786 /* homePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA7F682861A14800EEE786 /* homePage.swift */; };
+		A8C8B41E2868498D00388CCD /* nearStopRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8B41D2868498D00388CCD /* nearStopRow.swift */; };
 		A8C8F139286344E400645CA2 /* UserInfor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8F138286344E400645CA2 /* UserInfor.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		A8A583002865E0820000CBD1 /* logoutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logoutPage.swift; sourceTree = "<group>"; };
 		A8A58302286604270000CBD1 /* SearchResultRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRow.swift; sourceTree = "<group>"; };
 		A8BA7F682861A14800EEE786 /* homePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homePage.swift; sourceTree = "<group>"; };
+		A8C8B41D2868498D00388CCD /* nearStopRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nearStopRow.swift; sourceTree = "<group>"; };
 		A8C8F138286344E400645CA2 /* UserInfor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +156,7 @@
 				A8A1CF762868106C00CDB1E1 /* developmentTeamView.swift */,
 				A8A1CF7428680D6600CDB1E1 /* IntroduceView.swift */,
 				A8BA7F682861A14800EEE786 /* homePage.swift */,
+				A8C8B41D2868498D00388CCD /* nearStopRow.swift */,
 				A899F16D2866061800514D3E /* Bus */,
 				A899F1702866066600514D3E /* Weather */,
 				A899F16E2866065400514D3E /* Member */,
@@ -394,6 +397,7 @@
 				0ABADFE728562E29000A7A5C /* ContentView.swift in Sources */,
 				0AD3B682285B88100060A154 /* loginPage.swift in Sources */,
 				0ABADFE528562E29000A7A5C /* iOS_final_projectApp.swift in Sources */,
+				A8C8B41E2868498D00388CCD /* nearStopRow.swift in Sources */,
 				A8A1CF6D286766EF00CDB1E1 /* tdx.swift in Sources */,
 				A8A1CF79286810D500CDB1E1 /* functionIntroduceView.swift in Sources */,
 				A899F176286606ED00514D3E /* forgetPasswordView.swift in Sources */,

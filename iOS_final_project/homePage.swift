@@ -8,70 +8,6 @@
 import SwiftUI
 import Combine
 
-final class KeyboardGuardian: ObservableObject {
-
-    let objectWillChange = PassthroughSubject<Void, Never>()
-
-    public var rects: Array<CGRect>
-    public var keyboardRect: CGRect = CGRect()
-
-    // keyboardWillShow notification may be posted repeatedly,
-    // this flag makes sure we only act once per keyboard appearance
-    public var keyboardIsHidden = true
-
-    public var slide: CGFloat = 0 {
-        didSet {
-            objectWillChange.send()
-        }
-    }
-
-    public var showField: Int = 0 {
-        didSet {
-            updateSlide()
-        }
-    }
-
-    init(textFieldCount: Int) {
-        self.rects = Array<CGRect>(repeating: CGRect(), count: textFieldCount)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidHide(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
-    }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
-    @objc func keyBoardWillShow(notification: Notification) {
-        if keyboardIsHidden {
-            keyboardIsHidden = false
-            if let rect = notification.userInfo?["UIKeyboardFrameEndUserInfoKey"] as? CGRect {
-                keyboardRect = rect
-                updateSlide()
-            }
-        }
-    }
-
-    @objc func keyBoardDidHide(notification: Notification) {
-        keyboardIsHidden = true
-        updateSlide()
-    }
-
-    func updateSlide() {
-        if keyboardIsHidden {
-            slide = 0
-        } else {
-            let tfRect = self.rects[self.showField]
-            let diff = keyboardRect.minY - tfRect.maxY
-            print("tfRect", tfRect, "\nself.showField", self.showField)
-            if diff > 0 {
-                slide += diff
-            } else {
-                slide += min(diff, 0)
-            }
-        }
-    }
-}
 
 struct homePage: View {
     @State var weather: WeatherData?
@@ -82,13 +18,13 @@ struct homePage: View {
     @State var weatherMaxT: WeatherElement?
     @State private var busRoute = ""
     @State var searchbus = false
+    let nearStops = [nearStop.demo,nearStop.demo]
     
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject private var kGuardian = KeyboardGuardian(textFieldCount: 1)
     
     var body: some View{
         VStack(){
-            Text("公車")
+            Text("公車").padding()
             Button("尋找公車路線"){
                 searchbus = true
                 self.presentationMode.wrappedValue.dismiss()
@@ -105,7 +41,7 @@ struct homePage: View {
                 let parameterMinT = weatherMinT!.time[0].parameter
                 let parameterMaxT = weatherMaxT!.time[0].parameter
                 let photoWT = String(parameterWx.parameterValue!)
-                Text(photoWT)
+//               Text(photoWT)
                 HStack{
                     VStack {
                         Text("32℃").font(.system(size: 30)).bold()
@@ -131,7 +67,12 @@ struct homePage: View {
                     .padding(.trailing,10)
                 }
                 .frame(width: 350, height: 140)
-                
+             
+                List{
+                    ForEach (nearStops) { stop in
+                        nearStopRow(stop: stop)
+                    }
+                }
             }else{
                 Text("Loading...")
                     .onAppear(perform: self.loadData)
@@ -142,7 +83,6 @@ struct homePage: View {
 
         }
         .frame(width: 360, height: 750)
-        .offset(y: kGuardian.slide).animation(.easeInOut(duration: 1.0))
     }
     
     func loadData(){

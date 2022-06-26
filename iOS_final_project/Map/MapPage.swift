@@ -8,23 +8,11 @@
 import SwiftUI
 import MapKit
 
-struct MapLocation: Identifiable{
-    let id = UUID()
-    let name: String
-    let latitude: Double
-    let longitude: Double
-    var coordinate: CLLocationCoordinate2D {
-        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    }
-}
+
 
 struct MapPage: View {
     @StateObject private var viewModel = ContentViewModel()
-    
-    let MapLocations = [
-        MapLocation(name: "Chilren", latitude: 25.097239, longitude: 121.514942),
-        MapLocation(name: "Taipei", latitude: 25.142235, longitude: 121.569657)
-    ]
+    @State var MapLocations: [BusStopNearBy] = []
     
     var body: some View{
         VStack{
@@ -36,30 +24,35 @@ struct MapPage: View {
                     showsUserLocation: true,
                     annotationItems: MapLocations,
                     annotationContent: { location in
-                    MapAnnotation(coordinate: location.coordinate){
-                        HStack {
-                            Image(systemName: "mappin")
-                                .foregroundColor(.red)
-                            Text("Hello")
-                                .fixedSize()
-                        }.padding(10)
+                        MapAnnotation(coordinate: location.coordinate){
+                            HStack {
+                                Image(systemName: "mappin")
+                                    .foregroundColor(.red)
+                                Text(location.stopName?.Zh_tw ?? "Stop")
+                                    .fixedSize()
+                            }.padding(10)
+                        }
+                    })
+                    .ignoresSafeArea()
+                    .onAppear{
+                        viewModel.checkIfLocationServiceIsEnable()
+                        self.makeAnnotation()
                     }
-                })
-                .frame(width: 330, height: 630)
-                .ignoresSafeArea()
-                .onAppear{
-                    print("ONAPPEAR")
-                    viewModel.checkIfLocationServiceIsEnable()
-                }
             }
             .cornerRadius(50)
             .padding(.bottom,20)
         }
         .frame(width: 350, height: 680)
     }
+    
+    func makeAnnotation(){
+        let tdxApi = tdxAPI()
+        tdxApi.getBusStopNearBy(latitude: self.$viewModel.latitude, longitude: self.$viewModel.longitude, top: 30){ data in
+            self.MapLocations = data
+        }
+    }
 }
-
-struct MapPage_Preview: PreviewProvider {
+struct MapPage_Previews: PreviewProvider {
     static var previews: some View {
         MapPage()
     }
@@ -67,13 +60,18 @@ struct MapPage_Preview: PreviewProvider {
 
 final class ContentViewModel: NSObject, ObservableObject, CLLocationManagerDelegate{
     var locationManager: CLLocationManager?
+    var latitude = 0.0
+    var longitude = 0.0
     
-    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2))
+    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
     
     func checkIfLocationServiceIsEnable(){
         if CLLocationManager.locationServicesEnabled(){
             locationManager = CLLocationManager()
             locationManager!.delegate = self
+            latitude = locationManager?.location?.coordinate.latitude ?? 0.0
+            longitude = locationManager?.location?.coordinate.longitude ?? 0.0
+            
         }else{
             print("Turn it on")
         }
@@ -92,7 +90,9 @@ final class ContentViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
         case .denied:
             print("Denied")
         case .authorizedAlways, .authorizedWhenInUse:
-            region = MKCoordinateRegion(center: locationManager.location!.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+            
+            region = MKCoordinateRegion(center: locationManager.location!.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            
         @unknown default:
             break
         }

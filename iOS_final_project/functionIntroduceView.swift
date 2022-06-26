@@ -9,7 +9,7 @@ import SwiftUI
 
 struct functionIntroduceView: View {
     @State private var functions = [
-       "Login","Sing up",
+       "會員登入","會員註冊","公車查詢","顯示附近站牌","App介紹","使用者資料編輯"
         
         
     ]
