@@ -37,7 +37,7 @@ struct signupPage: View {
                 Divider()
                     .frame(width: 300, height: 2)
                     .overlay(.black)
-                    .padding(.bottom,30)
+                    .padding(.bottom,15)
                 
                 VStack {
                     Text("Account")

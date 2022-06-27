@@ -43,6 +43,7 @@ struct memberPage: View {
                     Circle()
                         .fill(Color(hue: 0.456, saturation: 0.972, brightness: 1.0))
                         .frame(width: 200, height: 200)
+                        .padding(.top, 100)
                     
                     Text("Tap to select a picture")
                         .foregroundColor(.blue)
@@ -51,13 +52,14 @@ struct memberPage: View {
                             showingImagePicker = true
                         }
                         .frame(width: 200.0, height: 200.0)
+                        .padding(.top, 100)
                     
                     image?
                         .resizable()
                         .frame(width: 200, height:200)
                         .clipShape(Circle())
                         .shadow(radius: 10)
-                        .padding(20)
+                        .padding(.top,100)
                 }
                 .frame(width: 200.0, height: 200.0)
                 .padding([.horizontal, .bottom])
@@ -67,15 +69,15 @@ struct memberPage: View {
                 }
                 
                 Text(user.displayName ?? "Unknow")
-
                     .font(.system(size: 28))
                     .bold()
-                    .frame(width: 250, height: 30)
+                    .frame(width: 350, height: 30)
+                    .padding(.top, 40)
                 
                 HStack{
                     Image(systemName: "pencil")
                         .resizable()
-                        .frame(width: 15.0, height: 15)
+                        .frame(width: 12, height: 12)
                         .foregroundColor(.blue)
                     Button(
                         "編輯",
@@ -84,58 +86,62 @@ struct memberPage: View {
                             self.presentationMode.wrappedValue.dismiss()
                         }
                     )
-                    .font(.system(size: 20))
+                    .font(.system(size: 16))
                     .foregroundColor(.blue)
                     .padding(.leading, -2.0)
                     .sheet(isPresented: $edit) {
                         EditName()
                     }
                 }
-                .frame(width: 370)
+                .frame(width: 350)
                 
                 List{
                     HStack{
                         Text("Email:")
                             .padding(-6.0)
+                            .font(.system(size: 16))
                         Text("\(user.email ?? "error")")
-                            .padding(.leading,35)
+                            .padding(.leading,30)
+                            .font(.system(size: 16))
                     }
                     
                     HStack{
                         Text("Birthday:")
                             .padding(-6.0)
+                            .font(.system(size: 16))
                         Text("\(userInfor.birthday,style: .date)")
-                            .padding(.leading,10)
+                            .padding(.leading,5)
+                            .font(.system(size: 16))
                     }
                     
                     HStack{
                         Text("Gender:")
                             .padding(-6.0)
+                            .font(.system(size: 16))
                         Text(self.genders[userInfor.selectedGender]).tag(userInfor.selectedGender)
-                            .padding(.leading,20)
-                            .fixedSize()
+                            .padding(.leading,15)
+                            .font(.system(size: 16))
                     }
                     
                     HStack{
                         Text("Address:")
                             .padding(-6.0)
+                            .font(.system(size: 16))
                         Text("\(userInfor.address)")
                             .padding(.leading,15)
+                            .font(.system(size: 16))
                             .fixedSize()
                     }
                     .padding(0.0)
                 }
                 .listStyle(.inset)
-                .frame(width: 400, height: 350)
-                
+                .frame(width: 330, height: 330)
                 
                 VStack(spacing: 0){
                     Button {
                         do{
                             try Auth.auth().signOut()
                             logout = true
-//                            dismiss()
-                            
                         }
                         catch{}
                     }
@@ -160,7 +166,7 @@ struct memberPage: View {
                 logoutPage()
             }
         }
-        .frame(width: 350, height: 700)
+        .frame(width: 400, height: 700)
         .padding()
     }
         

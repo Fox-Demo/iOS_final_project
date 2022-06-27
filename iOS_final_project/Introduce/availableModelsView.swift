@@ -15,8 +15,6 @@ struct availableModelsView: View {
         iPhone(name: "iPhone 12 pro Max",  size: "6.7"),
         iPhone(name: "iPhone 11 pro Max",  size: "6.5"),
         iPhone(name: "iPhone Xs Max",  size: "6.5"),
-        
-        
     ]
     var body: some View {
         VStack{
@@ -31,11 +29,14 @@ struct availableModelsView: View {
                         
                         Text(phones[index].name)
                             .padding()
-                        
-                        
                     }
                 }
             }
+            
+            Text(" 需 ios 15.5 以上\n 畫面大小為 6.1 吋 最佳 \n 上述為 6.1 吋已以上的機型")
+                .multilineTextAlignment(.center)
+                .foregroundColor(Color.red)
+            
         }
         
     }

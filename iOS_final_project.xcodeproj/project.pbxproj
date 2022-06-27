@@ -38,7 +38,13 @@
 		A8A583012865E0820000CBD1 /* logoutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A583002865E0820000CBD1 /* logoutPage.swift */; };
 		A8A58303286604270000CBD1 /* SearchResultRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A58302286604270000CBD1 /* SearchResultRow.swift */; };
 		A8BA7F692861A14800EEE786 /* homePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA7F682861A14800EEE786 /* homePage.swift */; };
+		A8C10EFF28694CE500E1981D /* futureFunctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C10EFE28694CE500E1981D /* futureFunctionView.swift */; };
 		A8C8B41E2868498D00388CCD /* nearStopRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8B41D2868498D00388CCD /* nearStopRow.swift */; };
+		A8C8B4222868992200388CCD /* busDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8B4212868992100388CCD /* busDetail.swift */; };
+		A8C8B424286899D000388CCD /* busDetailRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8B423286899D000388CCD /* busDetailRow.swift */; };
+		A8C8B42628689BA400388CCD /* GoPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8B42528689BA400388CCD /* GoPage.swift */; };
+		A8C8B42828689BB800388CCD /* ComePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8B42728689BB800388CCD /* ComePage.swift */; };
+		A8C8B42A2868B25E00388CCD /* SearchResultRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8B4292868B25E00388CCD /* SearchResultRowView.swift */; };
 		A8C8F139286344E400645CA2 /* UserInfor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8F138286344E400645CA2 /* UserInfor.swift */; };
 /* End PBXBuildFile section */
 
@@ -91,7 +97,13 @@
 		A8A583002865E0820000CBD1 /* logoutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logoutPage.swift; sourceTree = "<group>"; };
 		A8A58302286604270000CBD1 /* SearchResultRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRow.swift; sourceTree = "<group>"; };
 		A8BA7F682861A14800EEE786 /* homePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homePage.swift; sourceTree = "<group>"; };
+		A8C10EFE28694CE500E1981D /* futureFunctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = futureFunctionView.swift; sourceTree = "<group>"; };
 		A8C8B41D2868498D00388CCD /* nearStopRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nearStopRow.swift; sourceTree = "<group>"; };
+		A8C8B4212868992100388CCD /* busDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = busDetail.swift; sourceTree = "<group>"; };
+		A8C8B423286899D000388CCD /* busDetailRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = busDetailRow.swift; sourceTree = "<group>"; };
+		A8C8B42528689BA400388CCD /* GoPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoPage.swift; sourceTree = "<group>"; };
+		A8C8B42728689BB800388CCD /* ComePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComePage.swift; sourceTree = "<group>"; };
+		A8C8B4292868B25E00388CCD /* SearchResultRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRowView.swift; sourceTree = "<group>"; };
 		A8C8F138286344E400645CA2 /* UserInfor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,11 +162,7 @@
 				0ABADFE428562E29000A7A5C /* iOS_final_projectApp.swift */,
 				0ABADFE628562E29000A7A5C /* ContentView.swift */,
 				A8A1CF722867FC2D00CDB1E1 /* AboutView.swift */,
-				A8A1CF7A286811AE00CDB1E1 /* availableModelsView.swift */,
-				A8A1CF7E286814DE00CDB1E1 /* iphone.swift */,
-				A8A1CF78286810D500CDB1E1 /* functionIntroduceView.swift */,
-				A8A1CF762868106C00CDB1E1 /* developmentTeamView.swift */,
-				A8A1CF7428680D6600CDB1E1 /* IntroduceView.swift */,
+				A8C10F0028694D1A00E1981D /* Introduce */,
 				A8BA7F682861A14800EEE786 /* homePage.swift */,
 				A8C8B41D2868498D00388CCD /* nearStopRow.swift */,
 				A899F16D2866061800514D3E /* Bus */,
@@ -207,6 +215,11 @@
 				A8A58302286604270000CBD1 /* SearchResultRow.swift */,
 				A8A1CF6C286766EE00CDB1E1 /* tdx.swift */,
 				A899F16B2866059F00514D3E /* SearchBusView.swift */,
+				A8C8B4212868992100388CCD /* busDetail.swift */,
+				A8C8B423286899D000388CCD /* busDetailRow.swift */,
+				A8C8B42528689BA400388CCD /* GoPage.swift */,
+				A8C8B42728689BB800388CCD /* ComePage.swift */,
+				A8C8B4292868B25E00388CCD /* SearchResultRowView.swift */,
 			);
 			path = Bus;
 			sourceTree = "<group>";
@@ -248,6 +261,19 @@
 				A899F17C2866074200514D3E /* ImagePicker.swift */,
 			);
 			path = Image;
+			sourceTree = "<group>";
+		};
+		A8C10F0028694D1A00E1981D /* Introduce */ = {
+			isa = PBXGroup;
+			children = (
+				A8C10EFE28694CE500E1981D /* futureFunctionView.swift */,
+				A8A1CF7A286811AE00CDB1E1 /* availableModelsView.swift */,
+				A8A1CF7E286814DE00CDB1E1 /* iphone.swift */,
+				A8A1CF78286810D500CDB1E1 /* functionIntroduceView.swift */,
+				A8A1CF762868106C00CDB1E1 /* developmentTeamView.swift */,
+				A8A1CF7428680D6600CDB1E1 /* IntroduceView.swift */,
+			);
+			path = Introduce;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,6 +418,7 @@
 				A804FDA2285CA47100C1EBAF /* EditName.swift in Sources */,
 				0ABAE01328563849000A7A5C /* memberPage.swift in Sources */,
 				A8C8F139286344E400645CA2 /* UserInfor.swift in Sources */,
+				A8C8B4222868992200388CCD /* busDetail.swift in Sources */,
 				0ACDF52B2864DDAD0066D9DB /* MapPage.swift in Sources */,
 				A8A1CF732867FC2D00CDB1E1 /* AboutView.swift in Sources */,
 				0ABADFE728562E29000A7A5C /* ContentView.swift in Sources */,
@@ -400,16 +427,21 @@
 				A8C8B41E2868498D00388CCD /* nearStopRow.swift in Sources */,
 				A8A1CF6D286766EF00CDB1E1 /* tdx.swift in Sources */,
 				A8A1CF79286810D500CDB1E1 /* functionIntroduceView.swift in Sources */,
+				A8C8B42A2868B25E00388CCD /* SearchResultRowView.swift in Sources */,
 				A899F176286606ED00514D3E /* forgetPasswordView.swift in Sources */,
 				A899F16C2866059F00514D3E /* SearchBusView.swift in Sources */,
+				A8C8B42828689BB800388CCD /* ComePage.swift in Sources */,
 				0A323DF8285F166F00B729CE /* WeatherData.swift in Sources */,
 				A8A58303286604270000CBD1 /* SearchResultRow.swift in Sources */,
+				A8C8B424286899D000388CCD /* busDetailRow.swift in Sources */,
 				0A55F92828572686005E1DF3 /* signupPage.swift in Sources */,
 				A8A1CF7F286814DE00CDB1E1 /* iphone.swift in Sources */,
 				A899F17D2866074200514D3E /* ImagePicker.swift in Sources */,
 				A8A583012865E0820000CBD1 /* logoutPage.swift in Sources */,
 				A8A1CF7528680D6600CDB1E1 /* IntroduceView.swift in Sources */,
 				A8A1CF7B286811AE00CDB1E1 /* availableModelsView.swift in Sources */,
+				A8C10EFF28694CE500E1981D /* futureFunctionView.swift in Sources */,
+				A8C8B42628689BA400388CCD /* GoPage.swift in Sources */,
 				A8A1CF772868106C00CDB1E1 /* developmentTeamView.swift in Sources */,
 				A8BA7F692861A14800EEE786 /* homePage.swift in Sources */,
 				A899F17F2866074C00514D3E /* ImageSaver.swift in Sources */,
@@ -571,7 +603,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS_final_project/Preview Content\"";
-				DEVELOPMENT_TEAM = WNPQVXF7H9;
+				DEVELOPMENT_TEAM = RA3U2S364M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app need your location";

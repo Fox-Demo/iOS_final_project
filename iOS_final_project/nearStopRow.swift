@@ -22,19 +22,17 @@ struct nearStopRow: View {
     var body: some View {
         HStack{
             VStack(alignment: .leading){
-                
-                Text(stop.name).font(.system(size: 25))
+                Text(stop.name).font(.system(size: 18))
             }
             Spacer()
             VStack(spacing:10){
-        
-                Text("\(String(format: "%.2f", stop.distance)) m")
+                Text("\(String(format: "%.f", stop.distance)) m")
+                    .font(.system(size: 18))
+                    .frame(width: 60, height: 10)
                     .padding()
                     .overlay(Capsule(style: .continuous)
-                             //.stroke(Color.blue,style: StrokeStyle(lineWidth:4,dash: [10]))
-                        .stroke(Color.blue,lineWidth: 5)
+                        .stroke(Color.blue,lineWidth: 2)
                     )
-                
             }
         }.padding()
     }

@@ -36,7 +36,7 @@ struct loginPage: View {
                 Divider()
                     .frame(width: 300, height: 2)
                     .overlay(.black)
-                    .padding(.bottom,30)
+                    .padding(.bottom,15)
                 
                 VStack {
                     Text("Account")
@@ -89,17 +89,13 @@ struct loginPage: View {
                         isFailed = false
                     }
                 })
-                
                 .alert("成功", isPresented: $isSuccess, actions:{
-                    
                     Button("OK"){
                         isSuccess = false
                         dismiss()
                     }
                 })
-            
 
-                
                 Divider()
                     .frame(width: 300, height: 2)
                     .overlay(.black)

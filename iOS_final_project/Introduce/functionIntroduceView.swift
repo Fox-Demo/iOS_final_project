@@ -9,9 +9,7 @@ import SwiftUI
 
 struct functionIntroduceView: View {
     @State private var functions = [
-       "會員登入","會員註冊","公車查詢","顯示附近站牌","App介紹","使用者資料編輯"
-        
-        
+       "公車查詢","顯示附近站牌","會員登入","會員註冊","使用者資料編輯","App介紹"
     ]
     var body: some View {
         VStack{
@@ -26,7 +24,6 @@ struct functionIntroduceView: View {
                 }
             }
         }
-        
     }
 }
 

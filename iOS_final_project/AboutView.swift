@@ -14,19 +14,18 @@ struct AboutView: View {
     @State var development = false
     @State var fIntorduce = false
     @State var available = false
+    @State var future = false
     
     @Environment(\.presentationMode) var presentationMode
     
-    
     var body: some View {
         VStack{
-            
-            Text("App")
+            Text("關於App")
                 .font(.system(.title))
-                .padding(.top,50)
+                .bold()
+                .padding(.top,70)
             
             List{
-                
                 Button("產品介紹"){
                     introduce = true
                     self.presentationMode.wrappedValue.dismiss()
@@ -63,12 +62,19 @@ struct AboutView: View {
                     availableModelsView()
                 }
                 
-                
-                
-                
-                
+                Button("未來計畫"){
+                    future = true
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                .padding(10)
+                .sheet(isPresented: $future) {
+                    futureFunctionView()
+                }
             }
+            .frame(width: 350, height: 330)
+            Spacer()
         }
+        .frame(width: 400, height: 750)
     }
 }
 

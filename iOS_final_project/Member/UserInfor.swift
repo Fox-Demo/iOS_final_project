@@ -11,5 +11,4 @@ class UserInfor: ObservableObject {
     @Published var birthday = Date()
     @Published var selectedGender = 0
     @Published var address = ""
-
 }

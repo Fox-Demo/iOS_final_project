@@ -8,15 +8,14 @@
 import SwiftUI
 import MapKit
 
-
-
 struct MapPage: View {
     @EnvironmentObject var viewModel: ContentViewModel
     
     var body: some View{
         VStack{
-            Text("Map")
+            Text("附近站牌")
                 .font(.system(.title))
+                .bold()
                 .padding(.top,50)
             VStack{
                 Map(coordinateRegion: $viewModel.region,
@@ -24,21 +23,28 @@ struct MapPage: View {
                     annotationItems: viewModel.MapLocations,
                     annotationContent: { location in
                         MapAnnotation(coordinate: location.coordinate){
-                            HStack {
-                                Image(systemName: "mappin")
-                                    .foregroundColor(.red)
+                            VStack {
                                 Text(location.stopName?.Zh_tw ?? "Stop")
+                                    .font(.system(size: 10))
+                                    .frame(width: 80, height: 20)
+                                    .background(Color.white.opacity(0.7))
                                     .fixedSize()
+                                    .overlay(RoundedRectangle(cornerRadius: 6)
+                                        .stroke(Color.gray, lineWidth: 1)
+                                    )
+                                Image(systemName: "mappin.and.ellipse")
+                                    .foregroundColor(.red)
+                                
                             }.padding(10)
                         }
                     })
                     .ignoresSafeArea()
-                    
             }
+            .frame(width: 350, height: 550)
             .cornerRadius(50)
             .padding(.bottom,20)
         }
-        .frame(width: 350, height: 680)
+        .frame(width: 400, height: 750)
     }
     
 }

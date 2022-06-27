@@ -18,12 +18,22 @@ struct logoutPage: View {
         
         VStack{
             Text("成為會員")
-                .font(.title)
-            HStack{
+                .font(.system(.title))
+                .bold()
+                .padding(.top,50)
+            VStack{
                 Button("會員登入"){
                     login = true
                     self.presentationMode.wrappedValue.dismiss()
                 }
+                .font(.system(size: 20))
+                .frame(width: 150, height: 10)
+                .foregroundColor(Color(red: 201/255, green: 203/255, blue: 255/255))
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color(red: 201/255, green: 203/255, blue: 255/255), lineWidth: 3)
+                    )
                 .padding(10)
                 .sheet(isPresented: $login) {
                     loginPage()
@@ -33,10 +43,19 @@ struct logoutPage: View {
                     signup = true
                     self.presentationMode.wrappedValue.dismiss()
                 }
+                .font(.system(size: 20))
+                .frame(width: 150, height: 10)
+                .foregroundColor(Color(red: 201/255, green: 203/255, blue: 255/255))
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color(red: 201/255, green: 203/255, blue: 255/255), lineWidth: 3)
+                    )
                 .padding(10)
                 .sheet(isPresented: $signup) {
                     signupPage()
                 }
+                Spacer()
             }
         }
     }

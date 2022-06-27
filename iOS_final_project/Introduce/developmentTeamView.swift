@@ -22,6 +22,7 @@ struct developmentTeamView: View {
                 ForEach(teams.indices,id:\.self){index in
                     HStack{
                         Text("\(teams[index].self) ")
+                            .font(.system(size: 16))
                             .frame(width: 320, height: 50)
                     }
                 }

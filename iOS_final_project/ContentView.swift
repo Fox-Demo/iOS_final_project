@@ -16,21 +16,20 @@ struct ContentView: View {
         TabView{
             homePage()
                 .tabItem{
-                    Label("home page", systemImage: "house")
-                }
+                    Label("首頁", systemImage: "house")
+                }.background(Color(red: 239/255, green: 248/255, blue: 255/255))
             MapPage()
                 .tabItem{
-                    Label("google map", systemImage: "map")
-                }
+                    Label("地圖", systemImage: "map")
+                }.background(Color(red: 239/255, green: 248/255, blue: 255/255))
             memberPage()
                 .tabItem{
-                    Label("profile", systemImage: "person")
-                }
-//            memberPage()
+                    Label("個人", systemImage: "person")
+                }.background(Color(red: 239/255, green: 248/255, blue: 255/255))
             AboutView()
                 .tabItem{
-                    Label("setting", systemImage: "gearshape")
-                }
+                    Label("設定", systemImage: "gearshape")
+                }.background(Color(red: 239/255, green: 248/255, blue: 255/255))
         }
         .environmentObject(userInfor)
         .environmentObject(viewModel)
@@ -108,5 +107,6 @@ final class ContentViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+        
     }
 }

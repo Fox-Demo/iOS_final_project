@@ -22,6 +22,54 @@ extension Data {
     }
 }
 
+struct BusRouteStops: Codable {
+    let routeUID, routeID: String?
+    let routeName: Name?
+    let direction: Int?
+    let stops: [Stop?]
+    let updateTime: String?
+    let versionID: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case routeUID = "RouteUID"
+        case routeID = "RouteID"
+        case routeName = "RouteName"
+        case direction = "Direction"
+        case stops = "Stops"
+        case updateTime = "UpdateTime"
+        case versionID = "VersionID"
+    }
+}
+
+struct Stop: Codable {
+    let stopUID, stopID: String?
+    let stopName: Name?
+    let stopBoarding, stopSequence: Int?
+    let stopPosition: StopPosition?
+    let stationID: String?
+
+    enum CodingKeys: String, CodingKey {
+        case stopUID = "StopUID"
+        case stopID = "StopID"
+        case stopName = "StopName"
+        case stopBoarding = "StopBoarding"
+        case stopSequence = "StopSequence"
+        case stopPosition = "StopPosition"
+        case stationID = "StationID"
+    }
+}
+
+struct StopPosition: Codable {
+    let positionLon, positionLat: Double?
+    let geoHash: String?
+
+    enum CodingKeys: String, CodingKey {
+        case positionLon = "PositionLon"
+        case positionLat = "PositionLat"
+        case geoHash = "GeoHash"
+    }
+}
+
 struct BusRoute: Codable {
     let routeUID, routeID: String?
     let hasSubRoutes: Bool?
@@ -280,6 +328,33 @@ class tdxAPI{
         completion(json)
     }
     
+    func getBusStopsByRoute(city: String, route: String, direction: Int) -> BusRouteStops?{
+        var urlComponent = URLComponents(string: "\(self.prefix)/v2/Bus/DisplayStopOfRoute/City/\(city)/\(route)")!
+        urlComponent.queryItems = [
+            URLQueryItem(name: "$format", value: "JSON")
+        ]
+        
+        let request = basicRequest(url: urlComponent.url!)
+        let json:[BusRouteStops] = parseJson(request: request)
+        
+        let filterJson = json.filter({$0.direction == direction})
+        if filterJson.count > 0 {
+            return filterJson[0]
+        }
+        return nil
+    }
+    
+    func getBusEstimatedTimeOfArrivalByRoute (city: String, routeName: String, completion: @escaping ([BusEstimatedTimeOfArrivalByRoute])->Void){
+        var urlComponent = URLComponents(string: "\(self.prefix)/v2/Bus/EstimatedTimeOfArrival/City/\(city)/\(routeName)")!
+        urlComponent.queryItems = [
+            
+            URLQueryItem(name: "$format", value: "JSON")
+        ]
+        
+        let request = basicRequest(url: urlComponent.url!)
+        let json:[BusEstimatedTimeOfArrivalByRoute] = parseJson(request: request)
+        completion(json)
+    }
     
     private func basicRequest(url: URL) -> URLRequest{
         var request = URLRequest(url: url)
@@ -298,43 +373,17 @@ class tdxAPI{
         URLSession.shared.dataTask(with: request) { data, response, error in
 
             if let data = data {
-            
                 do {
-                    // Debug Print
-                    // data.prettyPrintedJSONString()
-
                     let decoder = JSONDecoder()
                     let responseJson = try decoder.decode(T.self, from: data)
                     json = responseJson
                     sem.signal()
-                    
-
                 } catch let error as NSError {
                     print(String(describing: error))
-                 
                 }
-
             }
         }.resume()
         sem.wait()
         return json!
     }
-    
 }
-
-//let tdxApi = tdxAPI()
-//tdxApi.getBusEstimatedTimeOfArrival(city: "Taipei", top: 30) { data in
-//    for stop in data{
-//
-//        print(stop.stopUID, stop.stopID, stop.stopName, stop.routeUID, stop.routeID, stop.routeName, stop.direction, stop.estimateTime, stop.stopStatus, stop.srcUpdateTime, stop.updateTime)
-//    }
-//}
-
-//tdxApi.getBusEstimatedTimeOfArrivalByRoute(city: "Taipei", routeName: "307", top: 30){ data in
-//    for stop in data{
-//
-//        print(stop)
-//    }
-//}
-
-//print(tdxApi.getBusRouteByCity(city: "Taipei"))
