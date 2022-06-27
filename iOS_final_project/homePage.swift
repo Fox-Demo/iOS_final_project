@@ -7,71 +7,7 @@
 
 import SwiftUI
 import Combine
-
-final class KeyboardGuardian: ObservableObject {
-
-    let objectWillChange = PassthroughSubject<Void, Never>()
-
-    public var rects: Array<CGRect>
-    public var keyboardRect: CGRect = CGRect()
-
-    // keyboardWillShow notification may be posted repeatedly,
-    // this flag makes sure we only act once per keyboard appearance
-    public var keyboardIsHidden = true
-
-    public var slide: CGFloat = 0 {
-        didSet {
-            objectWillChange.send()
-        }
-    }
-
-    public var showField: Int = 0 {
-        didSet {
-            updateSlide()
-        }
-    }
-
-    init(textFieldCount: Int) {
-        self.rects = Array<CGRect>(repeating: CGRect(), count: textFieldCount)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardDidHide(notification:)), name: UIResponder.keyboardDidHideNotification, object: nil)
-    }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-
-    @objc func keyBoardWillShow(notification: Notification) {
-        if keyboardIsHidden {
-            keyboardIsHidden = false
-            if let rect = notification.userInfo?["UIKeyboardFrameEndUserInfoKey"] as? CGRect {
-                keyboardRect = rect
-                updateSlide()
-            }
-        }
-    }
-
-    @objc func keyBoardDidHide(notification: Notification) {
-        keyboardIsHidden = true
-        updateSlide()
-    }
-
-    func updateSlide() {
-        if keyboardIsHidden {
-            slide = 0
-        } else {
-            let tfRect = self.rects[self.showField]
-            let diff = keyboardRect.minY - tfRect.maxY
-            print("tfRect", tfRect, "\nself.showField", self.showField)
-            if diff > 0 {
-                slide += diff
-            } else {
-                slide += min(diff, 0)
-            }
-        }
-    }
-}
+import MapKit
 
 struct homePage: View {
     @State var weather: WeatherData?
@@ -81,31 +17,36 @@ struct homePage: View {
     @State var weatherCI: WeatherElement?
     @State var weatherMaxT: WeatherElement?
     @State private var busRoute = ""
-    @ObservedObject private var kGuardian = KeyboardGuardian(textFieldCount: 1)
+    @State var searchbus = false
+    
+    @EnvironmentObject var viewModel: ContentViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View{
         VStack(){
-            TextField("尋找公車路線", text: $busRoute, prompt: Text("尋找公車路線"))
-                .textFieldStyle(.roundedBorder)
-                .padding(.top,50)
-                
-            
+            Text("公車即時動態查詢APP")
+                .font(.system(size: 25))
+                .bold()
+                .padding(.top, 50)
+
             if let weather = weather {
                 let parameterWx = weatherWx!.time[0].parameter
                 let parameterPop = weatherPop!.time[0].parameter
                 let parameterMinT = weatherMinT!.time[0].parameter
                 let parameterMaxT = weatherMaxT!.time[0].parameter
                 let photoWT = String(parameterWx.parameterValue!)
+                let degree = String((Int(parameterMinT.parameterName)! + Int(parameterMaxT.parameterName)!)/2)
                 HStack{
                     VStack {
-                        Text("32℃").font(.system(size: 30)).bold()
-                        Text("\(parameterMinT.parameterName)℃~\(parameterMaxT.parameterName)℃")
+                        Text("\(degree)℃").font(.system(size: 30)).bold()
+                        Text("\(parameterMinT.parameterName)℃/\(parameterMaxT.parameterName)℃")
+                            .font(.system(size: 15)).bold()
                             .fixedSize()
                     }
-                    .frame(width: 100, height: 140)
-                    .padding()
+                    .frame(width: 100, height: 130)
+                    .padding(.leading,10)
                     
-                    Divider().frame(width: 2, height: 100).overlay(.gray)
+                    Divider().frame(width: 2, height: 70).overlay(.gray)
                     
                     Image(photoWT)
                         .resizable()
@@ -114,26 +55,53 @@ struct homePage: View {
                     
                     VStack{
                         Text(parameterWx.parameterName)
-                            .font(.system(size: 25))
+                            .font(.system(size: 20))
+                            .bold()
+                            .multilineTextAlignment(.center)
                         Text("降雨率:\(parameterPop.parameterName)%")
+                            .font(.system(size: 12))
                     }
-                    .frame(width: 140, height: 140)
+                    .frame(width: 150, height: 140)
                     .padding(.trailing,10)
                 }
-                .frame(width: 350, height: 140)
+                .frame(width: 350, height: 130)
                 
+                Button("尋找公車路線"){
+                    searchbus = true
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                .font(.system(size: 20))
+                .frame(width: 150, height: 10)
+                .foregroundColor(Color(red: 201/255, green: 203/255, blue: 255/255))
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color(red: 201/255, green: 203/255, blue: 255/255), lineWidth: 3)
+                    )
+                .padding()
+                .sheet(isPresented: $searchbus) {
+                    SearchBusView()
+                }
+             
+                List{
+                    ForEach (viewModel.nearStops) { stop in
+                        nearStopRow(stop: stop)
+                    }
+                }
+                .frame(width: 330, height: 400)
             }else{
                 Text("Loading...")
-                    .onAppear(perform: self.loadData)
+                    .onAppear{
+                        self.loadData()
+                        viewModel.checkIfLocationServiceIsEnable()
+                    }
             }
             Divider()
             Spacer()
-            //            站牌API
-
         }
-        .frame(width: 360, height: 750)
-        .offset(y: kGuardian.slide).animation(.easeInOut(duration: 1.0))
+        .frame(width: 400, height: 750)
     }
+    
     
     func loadData(){
         let url = URL(string: "https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-97F69598-88F8-4EF1-A7D6-F8D68CB225DA&format=JSON&locationName=%E8%87%BA%E5%8C%97%E5%B8%82&elementName=")!
@@ -167,5 +135,6 @@ struct homePage: View {
 struct homePage_Previews: PreviewProvider {
     static var previews: some View {
         homePage()
+            .environmentObject(ContentViewModel())
     }
 }
