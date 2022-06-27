@@ -114,15 +114,15 @@ struct loginPage: View {
                 .frame(width: 320, height: 30)
                 .padding()
             
-                HStack(spacing:-5) {
-                    NavigationLink{
-                        forgetPasswordView()
-                    }label: {
-                        Text("忘記密碼？")
-                    }
-                }
-                .frame(width: 320, height: 5)
-                .padding()
+//                HStack(spacing:-5) {
+//                    NavigationLink{
+//                        forgetPasswordView()
+//                    }label: {
+//                        Text("忘記密碼？")
+//                    }
+//                }
+//                .frame(width: 320, height: 5)
+//                .padding()
                 Spacer()
             }
             .frame(width: 350, height: 700)

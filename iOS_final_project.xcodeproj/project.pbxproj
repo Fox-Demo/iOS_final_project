@@ -36,7 +36,6 @@
 		A8A1CF7B286811AE00CDB1E1 /* availableModelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1CF7A286811AE00CDB1E1 /* availableModelsView.swift */; };
 		A8A1CF7F286814DE00CDB1E1 /* iphone.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A1CF7E286814DE00CDB1E1 /* iphone.swift */; };
 		A8A583012865E0820000CBD1 /* logoutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A583002865E0820000CBD1 /* logoutPage.swift */; };
-		A8A58303286604270000CBD1 /* SearchResultRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A58302286604270000CBD1 /* SearchResultRow.swift */; };
 		A8BA7F692861A14800EEE786 /* homePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BA7F682861A14800EEE786 /* homePage.swift */; };
 		A8C10EFF28694CE500E1981D /* futureFunctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C10EFE28694CE500E1981D /* futureFunctionView.swift */; };
 		A8C8B41E2868498D00388CCD /* nearStopRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C8B41D2868498D00388CCD /* nearStopRow.swift */; };
@@ -95,7 +94,6 @@
 		A8A1CF7A286811AE00CDB1E1 /* availableModelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = availableModelsView.swift; sourceTree = "<group>"; };
 		A8A1CF7E286814DE00CDB1E1 /* iphone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iphone.swift; sourceTree = "<group>"; };
 		A8A583002865E0820000CBD1 /* logoutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = logoutPage.swift; sourceTree = "<group>"; };
-		A8A58302286604270000CBD1 /* SearchResultRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRow.swift; sourceTree = "<group>"; };
 		A8BA7F682861A14800EEE786 /* homePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homePage.swift; sourceTree = "<group>"; };
 		A8C10EFE28694CE500E1981D /* futureFunctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = futureFunctionView.swift; sourceTree = "<group>"; };
 		A8C8B41D2868498D00388CCD /* nearStopRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nearStopRow.swift; sourceTree = "<group>"; };
@@ -161,10 +159,8 @@
 			children = (
 				0ABADFE428562E29000A7A5C /* iOS_final_projectApp.swift */,
 				0ABADFE628562E29000A7A5C /* ContentView.swift */,
-				A8A1CF722867FC2D00CDB1E1 /* AboutView.swift */,
-				A8C10F0028694D1A00E1981D /* Introduce */,
 				A8BA7F682861A14800EEE786 /* homePage.swift */,
-				A8C8B41D2868498D00388CCD /* nearStopRow.swift */,
+				A8C10F0028694D1A00E1981D /* Introduce */,
 				A899F16D2866061800514D3E /* Bus */,
 				A899F1702866066600514D3E /* Weather */,
 				A899F16E2866065400514D3E /* Member */,
@@ -212,7 +208,7 @@
 		A899F16D2866061800514D3E /* Bus */ = {
 			isa = PBXGroup;
 			children = (
-				A8A58302286604270000CBD1 /* SearchResultRow.swift */,
+				A8C8B41D2868498D00388CCD /* nearStopRow.swift */,
 				A8A1CF6C286766EE00CDB1E1 /* tdx.swift */,
 				A899F16B2866059F00514D3E /* SearchBusView.swift */,
 				A8C8B4212868992100388CCD /* busDetail.swift */,
@@ -266,6 +262,7 @@
 		A8C10F0028694D1A00E1981D /* Introduce */ = {
 			isa = PBXGroup;
 			children = (
+				A8A1CF722867FC2D00CDB1E1 /* AboutView.swift */,
 				A8C10EFE28694CE500E1981D /* futureFunctionView.swift */,
 				A8A1CF7A286811AE00CDB1E1 /* availableModelsView.swift */,
 				A8A1CF7E286814DE00CDB1E1 /* iphone.swift */,
@@ -432,7 +429,6 @@
 				A899F16C2866059F00514D3E /* SearchBusView.swift in Sources */,
 				A8C8B42828689BB800388CCD /* ComePage.swift in Sources */,
 				0A323DF8285F166F00B729CE /* WeatherData.swift in Sources */,
-				A8A58303286604270000CBD1 /* SearchResultRow.swift in Sources */,
 				A8C8B424286899D000388CCD /* busDetailRow.swift in Sources */,
 				0A55F92828572686005E1DF3 /* signupPage.swift in Sources */,
 				A8A1CF7F286814DE00CDB1E1 /* iphone.swift in Sources */,

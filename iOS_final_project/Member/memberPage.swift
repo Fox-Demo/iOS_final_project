@@ -154,10 +154,10 @@ struct memberPage: View {
                             .padding(.bottom,20)
                     }
                     .padding(.bottom,30)
-                    .alert("登出成功", isPresented: $logout, actions:{
+                    .alert("歡迎回來<3", isPresented: $logout, actions:{
                         Button("OK"){
                             logout = false
-                            dismiss()
+//                            dismiss()
                         }
                     })
                 }

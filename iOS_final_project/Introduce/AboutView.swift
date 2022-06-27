@@ -71,7 +71,7 @@ struct AboutView: View {
                     futureFunctionView()
                 }
             }
-            .frame(width: 350, height: 330)
+            .frame(width: 350, height: 350)
             Spacer()
         }
         .frame(width: 400, height: 750)
