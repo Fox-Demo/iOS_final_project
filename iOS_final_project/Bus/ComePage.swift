@@ -18,7 +18,7 @@ struct ComePage: View {
     var body: some View {
         VStack{
             HStack{
-                Text("\(busId) - 往\(endStop)").font(.title)
+                Text("\(busId) - 往\(startStop)").font(.title)
             }.padding()
             List{
                 ForEach (detailStops, id:\.id) { stop in
